@@ -111,6 +111,10 @@ public class GestaoEscolar implements AlunoRepository, ProfessorRepository, Disc
         System.out.println("Digite o valor da nota: ");
         float notaValor = input.nextFloat();
 
+        if (notaValor < 0f || notaValor > 0f){
+            throw new NotaInvalida();
+        }
+
         Nota nota = aluno.getListaNotas().stream()
                 .filter(n -> n.getMatriculaAluno() == aluno.getMatricula())
                 .findFirst()

@@ -77,7 +77,12 @@ public class Main {
                     gestaoEscolar.adicionarDisciplina(disciplina);
                     break;
                 case 4:
-                    gestaoEscolar.adicionarNota();
+                    try {
+                        gestaoEscolar.adicionarNota();
+                    } catch (Exception e) {
+//                        System.err.println(e.getMessage());
+                        e.printStackTrace();
+                    }
                     break;
                 case 5:
 //                    for (Aluno alunoIndice: gestaoEscolar.getListaAlunos()) {
