@@ -10,19 +10,19 @@ public class Main {
         int autoIncrementProfessor = 0;
         int autoIncrementDisicplina = 0;
 
-//        Aluno alunoTeste = new Aluno(1,"pedro silva");
-//        Professor professorTeste = new Professor(1,"joão silva");
-//        Disciplina disciplinaTeste = new Disciplina(1,"quimica");
-//        Disciplina disciplinaTeste2 = new Disciplina(2,"fisica");
-//        Disciplina disciplinaTeste3 = new Disciplina(3,"biologia");
-//
-//        gestaoEscolar.getListaAlunos().add(alunoTeste);
-//        gestaoEscolar.getListaDisciplinas().add(disciplinaTeste);
-//        gestaoEscolar.getListaDisciplinas().add(disciplinaTeste2);
-//        gestaoEscolar.getListaDisciplinas().add(disciplinaTeste3);
-//        gestaoEscolar.getListaProfessores().add(professorTeste);
-//        gestaoEscolar.atribuirDisciplina(professorTeste,disciplinaTeste);
-//        gestaoEscolar.atribuirDisciplina(professorTeste,disciplinaTeste2);
+        Aluno alunoTeste = new Aluno(1,"pedro silva");
+        Professor professorTeste = new Professor(1,"joão silva");
+        Disciplina disciplinaTeste = new Disciplina(1,"quimica");
+        Disciplina disciplinaTeste2 = new Disciplina(2,"fisica");
+        Disciplina disciplinaTeste3 = new Disciplina(3,"biologia");
+
+        gestaoEscolar.getListaAlunos().add(alunoTeste);
+        gestaoEscolar.getListaDisciplinas().add(disciplinaTeste);
+        gestaoEscolar.getListaDisciplinas().add(disciplinaTeste2);
+        gestaoEscolar.getListaDisciplinas().add(disciplinaTeste3);
+        gestaoEscolar.getListaProfessores().add(professorTeste);
+        gestaoEscolar.atribuirDisciplina(professorTeste,disciplinaTeste);
+        gestaoEscolar.atribuirDisciplina(professorTeste,disciplinaTeste2);
 
         do {
             System.out.printf("%s--- Sistema Escola ---%s\n","\u001B[34m","\u001B[0m");
@@ -116,7 +116,7 @@ public class Main {
                     gestaoEscolar.removerDisciplina(idDisciplina_);
                     break;
                 case 8:
-                    System.out.println(gestaoEscolar.gerarHistoricoAluno());
+                    gestaoEscolar.gerarHistorico();
                     break;
                 case 9:
 
@@ -137,15 +137,19 @@ public class Main {
                     System.out.println("Digite a matricula do professor para ser atribuido a disciplina:");
                     int matricula = input.nextInt();
 
-                    var disciplina_ = gestaoEscolar.getListaDisciplinas().stream()
-                            .filter(d -> d.getIdDisciplina() == id)
-                            .findFirst()
-                            .orElse(null);
+//                    var disciplina_ = gestaoEscolar.getListaDisciplinas().stream()
+//                            .filter(d -> d.getIdDisciplina() == id)
+//                            .findFirst()
+//                            .orElse(null);
+//
+//                    var professor_ = gestaoEscolar.getListaProfessores().stream()
+//                            .filter(p -> p.getMatricula() == matricula)
+//                            .findFirst()
+//                            .orElse(null);
 
-                    var professor_ = gestaoEscolar.getListaProfessores().stream()
-                            .filter(p -> p.getMatricula() == matricula)
-                            .findFirst()
-                            .orElse(null);
+                    var disciplina_ = gestaoEscolar.pegarDisciplinaPorId(id);
+
+                    var professor_ = gestaoEscolar.pegarProfessorPorMatricula(matricula);
 
                     gestaoEscolar.atribuirDisciplina(professor_,disciplina_);
                     break;
