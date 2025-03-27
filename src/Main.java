@@ -16,11 +16,13 @@ public class Main {
         Disciplina disciplinaTeste2 = new Disciplina(2,"fisica");
         Disciplina disciplinaTeste3 = new Disciplina(3,"biologia");
 
-        gestaoEscolar.getListaAlunos().add(alunoTeste);
-        gestaoEscolar.getListaDisciplinas().add(disciplinaTeste);
-        gestaoEscolar.getListaDisciplinas().add(disciplinaTeste2);
-        gestaoEscolar.getListaDisciplinas().add(disciplinaTeste3);
-        gestaoEscolar.getListaProfessores().add(professorTeste);
+        gestaoEscolar.getAlunoService().getListaAlunos().add(alunoTeste);
+
+        gestaoEscolar.getDisciplinaService().getListaDisciplinas().add(disciplinaTeste);
+        gestaoEscolar.getDisciplinaService().getListaDisciplinas().add(disciplinaTeste2);
+        gestaoEscolar.getDisciplinaService().getListaDisciplinas().add(disciplinaTeste3);
+        gestaoEscolar.getProfessorService().getListaProfessores().add(professorTeste);
+
         gestaoEscolar.atribuirDisciplina(professorTeste,disciplinaTeste);
         gestaoEscolar.atribuirDisciplina(professorTeste,disciplinaTeste2);
 

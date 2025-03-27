@@ -3,5 +3,5 @@ public interface ProfessorRepository {
     void demitirProfessor(int matriculaProfessor);
     void atribuirDisciplina(Professor professor, Disciplina disciplina);
     void listarProfessores();
-    Professor pegarProfessorPorMatricula(int matricula);
+    Professor pegarProfessorPorMatricula(int matriculaProfessor);
 }
