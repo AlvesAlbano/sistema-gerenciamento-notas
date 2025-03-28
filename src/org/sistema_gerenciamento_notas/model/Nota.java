@@ -35,16 +35,19 @@ public class Nota {
         this.notasMap = notasMap;
     }
 
-    public String getSituacao(Disciplina disciplina){
-        float soma = 0f;
-
-        List<Float> notas = notasMap.get(disciplina);
-
-        for (Float nota: notas){
+    public String getSituacao(Disciplina disciplina) {
+        List<Float> notas = this.notasMap.get(disciplina);
+        if (notas == null || notas.isEmpty()) {
+            return "Sem notas";
+        }
+        
+        float soma = 0;
+        for (Float nota : notas) {
             soma += nota;
         }
-
-        return (soma/3f > 4f) ? "Aprovado" : "Reprovado";
+        float media = soma / notas.size();
+        
+        return media >= 5 ? "Aprovado" : "Reprovado";
     }
 
     @Override
