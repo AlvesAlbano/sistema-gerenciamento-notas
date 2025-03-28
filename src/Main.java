@@ -100,7 +100,10 @@ public class Main {
                     break;
                 case 4:
                     try {
-                        gestaoProfessor.adicionarNota();
+                        var alunoService = gestaoAluno.getAlunoService();
+                        var disciplinaService = gestaoDisciplina.getDisciplinaService();
+
+                        gestaoProfessor.adicionarNota(alunoService,disciplinaService);
                     } catch (Exception e) {
 //                        System.err.println(e.getMessage());
                         e.printStackTrace();

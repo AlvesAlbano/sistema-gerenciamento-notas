@@ -8,6 +8,10 @@ public class GestaoAluno implements AlunoRepository {
 
     private final AlunoService alunoService = new AlunoService();
 
+    public AlunoService getAlunoService() {
+        return alunoService;
+    }
+
     @Override
     public void matricularAluno(Aluno aluno) {
         alunoService.matricularAluno(aluno);

@@ -8,6 +8,11 @@ public class GestaoDisciplina implements DisciplinaRepository {
 
     private final DisciplinaService disciplinaService = new DisciplinaService();
 
+
+    public DisciplinaService getDisciplinaService() {
+        return disciplinaService;
+    }
+
     @Override
     public void adicionarDisciplina(Disciplina disciplina) {
         disciplinaService.adicionarDisciplina(disciplina);
