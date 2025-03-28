@@ -177,7 +177,7 @@ public class Main {
 //
 //                    var professor_ = gestaoEscolar.getListaProfessores().stream()
 //                            .filter(p -> p.getMatricula() == matricula)
-//                            .findFirst()
+//                            .findFirst(0)
 //                            .orElse(null);
 
                     var disciplina_ = gestaoDisciplina.pegarDisciplinaPorId(id);
