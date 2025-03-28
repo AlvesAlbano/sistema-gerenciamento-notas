@@ -2,13 +2,15 @@ package org.sistema_gerenciamento_notas.service;
 
 import org.sistema_gerenciamento_notas.model.Disciplina;
 import org.sistema_gerenciamento_notas.model.Professor;
+import org.sistema_gerenciamento_notas.observer.ProfessorObserver;
 import org.sistema_gerenciamento_notas.repository.ProfessorRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProfessorService implements ProfessorRepository {
+public class ProfessorService implements ProfessorRepository, ProfessorObserver {
     private List<Professor> listaProfessores = new ArrayList<>();
+    private static ProfessorService professorService;
 
     public List<Professor> getListaProfessores() {
         return listaProfessores;
@@ -18,16 +20,29 @@ public class ProfessorService implements ProfessorRepository {
         this.listaProfessores = listaProfessores;
     }
 
+    private ProfessorService(){}
+
+    public static ProfessorService getProfessorService(){
+        if (professorService == null) {
+            professorService = new ProfessorService();
+        }
+        return professorService;
+    }
+
     @Override
     public void contratarProfessor(Professor professor) {
         listaProfessores.add(professor);
+        onProfessorContratado(professor);
     }
 
     @Override
     public void demitirProfessor(int matriculaProfessor) {
-        listaProfessores.removeIf(
-                professor -> professor.getMatricula() == matriculaProfessor
-        );
+        var professor = pegarProfessorPorMatricula(matriculaProfessor);
+
+        if (professor != null) {
+            listaProfessores.remove(professor);
+            onProfessorDemitido(professor);
+        }
     }
 
     @Override
@@ -51,5 +66,15 @@ public class ProfessorService implements ProfessorRepository {
             }
         }
         return null;
+    }
+
+    @Override
+    public void onProfessorContratado(Professor professor) {
+        System.out.printf("Professor contratado: %s\n",professor.getNome());
+    }
+
+    @Override
+    public void onProfessorDemitido(Professor professor) {
+        System.out.printf("Professor demitido: %s\n",professor.getNome());
     }
 }

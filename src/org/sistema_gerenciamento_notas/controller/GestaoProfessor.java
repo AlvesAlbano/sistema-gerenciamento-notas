@@ -14,9 +14,7 @@ import java.util.Scanner;
 
 public class GestaoProfessor implements ProfessorRepository {
 
-    private final ProfessorService professorService = new ProfessorService();
-    private final AlunoService alunoService = new AlunoService();
-    private final DisciplinaService disciplinaService = new DisciplinaService();
+    private final ProfessorService professorService = ProfessorService.getProfessorService();
 
     @Override
     public void contratarProfessor(Professor professor) {
@@ -43,7 +41,7 @@ public class GestaoProfessor implements ProfessorRepository {
         return professorService.pegarProfessorPorMatricula(matriculaProfessor);
     }
 
-    public void adicionarNota(){
+    public void adicionarNota(AlunoService alunoService, DisciplinaService disciplinaService){
         alunoService.listarAlunos();
 
         final Scanner input = new Scanner(System.in);
@@ -78,7 +76,6 @@ public class GestaoProfessor implements ProfessorRepository {
             nota.getNotasMap().putIfAbsent(disciplina, new ArrayList<>(3));
             aluno.getListaNotas().add(nota);
         }
-
         nota.getNotasMap().get(disciplina).add(notaValor);
     }
 }
