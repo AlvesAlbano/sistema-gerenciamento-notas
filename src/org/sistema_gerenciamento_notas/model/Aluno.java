@@ -1,5 +1,6 @@
+package org.sistema_gerenciamento_notas.model;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Aluno extends Pessoa {
@@ -15,7 +16,7 @@ public class Aluno extends Pessoa {
     @Override
     public String toString() {
 
-        return "Aluno{" +
+        return "org.sistema_gerenciamento_notas.model.Aluno{" +
                 "listaNotas=" + listaNotas +
                 ", matricula=" + matricula +
                 ", nome='" + nome + '\'' +

@@ -1,3 +1,5 @@
+package org.sistema_gerenciamento_notas.model;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,7 +35,7 @@ public class Disciplina {
 
     @Override
     public String toString() {
-        return "Disciplina{" +
+        return "org.sistema_gerenciamento_notas.model.Disciplina{" +
                 "idDisciplina=" + idDisciplina +
                 ", nomeDisciplina='" + nomeDisciplina + '\'' +
                 '}';

@@ -1,10 +1,20 @@
+import org.sistema_gerenciamento_notas.controller.GestaoAluno;
+import org.sistema_gerenciamento_notas.controller.GestaoDisciplina;
+import org.sistema_gerenciamento_notas.controller.GestaoProfessor;
+import org.sistema_gerenciamento_notas.model.Aluno;
+import org.sistema_gerenciamento_notas.model.Disciplina;
+import org.sistema_gerenciamento_notas.model.Professor;
+
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
 
         final Scanner input = new Scanner(System.in);
-        final GestaoEscolar gestaoEscolar = new GestaoEscolar();
+        final GestaoAluno gestaoAluno = new GestaoAluno();
+        final GestaoDisciplina gestaoDisciplina = new GestaoDisciplina();
+        final GestaoProfessor gestaoProfessor = new GestaoProfessor();
+
         int opcao;
         int autoIncrementAluno = 0;
         int autoIncrementProfessor = 0;
@@ -16,16 +26,26 @@ public class Main {
         Disciplina disciplinaTeste2 = new Disciplina(2,"fisica");
         Disciplina disciplinaTeste3 = new Disciplina(3,"biologia");
 
-        gestaoEscolar.getAlunoService().getListaAlunos().add(alunoTeste);
+//        gestaoEscolar.getAlunoService().getListaAlunos().add(alunoTeste);
+//
+//        gestaoEscolar.getDisciplinaService().getListaDisciplinas().add(disciplinaTeste);
+//        gestaoEscolar.getDisciplinaService().getListaDisciplinas().add(disciplinaTeste2);
+//        gestaoEscolar.getDisciplinaService().getListaDisciplinas().add(disciplinaTeste3);
+//        gestaoEscolar.getProfessorService().getListaProfessores().add(professorTeste);
+//
+//        gestaoEscolar.atribuirDisciplina(professorTeste,disciplinaTeste);
+//        gestaoEscolar.atribuirDisciplina(professorTeste,disciplinaTeste2);
 
-        gestaoEscolar.getDisciplinaService().getListaDisciplinas().add(disciplinaTeste);
-        gestaoEscolar.getDisciplinaService().getListaDisciplinas().add(disciplinaTeste2);
-        gestaoEscolar.getDisciplinaService().getListaDisciplinas().add(disciplinaTeste3);
-        gestaoEscolar.getProfessorService().getListaProfessores().add(professorTeste);
+        gestaoAluno.matricularAluno(alunoTeste);
 
-        gestaoEscolar.atribuirDisciplina(professorTeste,disciplinaTeste);
-        gestaoEscolar.atribuirDisciplina(professorTeste,disciplinaTeste2);
+        gestaoDisciplina.adicionarDisciplina(disciplinaTeste);
+        gestaoDisciplina.adicionarDisciplina(disciplinaTeste2);
+        gestaoDisciplina.adicionarDisciplina(disciplinaTeste3);
 
+        gestaoProfessor.contratarProfessor(professorTeste);
+
+        gestaoProfessor.atribuirDisciplina(professorTeste,disciplinaTeste);
+        gestaoProfessor.atribuirDisciplina(professorTeste,disciplinaTeste2);
         do {
             System.out.printf("%s--- Sistema Escola ---%s\n","\u001B[34m","\u001B[0m");
 
@@ -53,7 +73,7 @@ public class Main {
                     final String nomeAluno = input.nextLine();
 
                     Aluno aluno = new Aluno(matriculaAluno,nomeAluno);
-                    gestaoEscolar.matricularAluno(aluno);
+                    gestaoAluno.matricularAluno(aluno);
 
                     System.out.printf("%sAluno(a) matriculado(a) com sucesso!%s\n","\u001B[32m","\u001B[0m");
                     break;
@@ -64,7 +84,7 @@ public class Main {
                     final String nomeProfessor = input.nextLine();
 
                     Professor professor = new Professor(matriculaProfessor,nomeProfessor);
-                    gestaoEscolar.contratarProfessor(professor);
+                    gestaoProfessor.contratarProfessor(professor);
 
                     System.out.printf("%sProfessor(a) contratado(a) com sucesso!%s\n","\u001B[32m","\u001B[0m");
                     break;
@@ -76,54 +96,54 @@ public class Main {
                     final String nomeDisciplina = input.nextLine();
                     Disciplina disciplina = new Disciplina(idDisciplina,nomeDisciplina);
 
-                    gestaoEscolar.adicionarDisciplina(disciplina);
+                    gestaoDisciplina.adicionarDisciplina(disciplina);
                     break;
                 case 4:
                     try {
-                        gestaoEscolar.adicionarNota();
+                        gestaoProfessor.adicionarNota();
                     } catch (Exception e) {
 //                        System.err.println(e.getMessage());
                         e.printStackTrace();
                     }
                     break;
                 case 5:
-//                    for (Aluno alunoIndice: gestaoEscolar.getListaAlunos()) {
+//                    for (org.sistema_gerenciamento_notas.model.Aluno alunoIndice: gestaoEscolar.getListaAlunos()) {
 //                        System.out.printf("Matricula: %s - Nome: %s\n",alunoIndice.getMatricula(),alunoIndice.getNome());
 //                    }
 
-                    gestaoEscolar.listarAlunos();
+                    gestaoAluno.listarAlunos();
 
                     System.out.println("Digite a matricula do aluno que deseja remover: ");
                     final int matriculaAluno_ = input.nextInt();
 
-                    gestaoEscolar.desmatricularAluno(matriculaAluno_);
+                    gestaoAluno.desmatricularAluno(matriculaAluno_);
                     break;
                 case 6:
-//                    for (Professor professorIndice: gestaoEscolar.getListaProfessores()) {
+//                    for (org.sistema_gerenciamento_notas.model.Professor professorIndice: gestaoEscolar.getListaProfessores()) {
 //                        System.out.printf("Matricula: %s - Nome: %s",professorIndice.getMatricula(),professorIndice.getNome());
 //                    }
 
-                    gestaoEscolar.listarProfessores();
+                    gestaoProfessor.listarProfessores();
 
                     System.out.println("Digite a matricula do professor que deseja remover: ");
                     final int matriculaProfessor_ = input.nextInt();
 
-                    gestaoEscolar.demitirProfessor(matriculaProfessor_);
+                    gestaoProfessor.demitirProfessor(matriculaProfessor_);
                     break;
                 case 7:
-//                    for (Disciplina disciplinaIndice: gestaoEscolar.getListaDisciplinas()) {
+//                    for (org.sistema_gerenciamento_notas.model.Disciplina disciplinaIndice: gestaoEscolar.getListaDisciplinas()) {
 //                        System.out.printf("ID: %s - Nome: %s\n",disciplinaIndice.getIdDisciplina(), disciplinaIndice.getNomeDisciplina());
 //                    }
 
-                    gestaoEscolar.listarDisciplinas();
+                    gestaoDisciplina.listarDisciplinas();
 
                     System.out.println("Digite o id da disciplina que deseja remover: ");
                     final int idDisciplina_ = input.nextInt();
 
-                    gestaoEscolar.removerDisciplina(idDisciplina_);
+                    gestaoDisciplina.removerDisciplina(idDisciplina_);
                     break;
                 case 8:
-                    gestaoEscolar.gerarHistorico();
+                    gestaoAluno.gerarHistorico();
                     break;
                 case 9:
 
@@ -135,8 +155,8 @@ public class Main {
 //                        System.out.printf("%d - %s\n",i,gestaoEscolar.getListaProfessores().get(i));
 //                    }
 
-                    gestaoEscolar.listarDisciplinas();
-                    gestaoEscolar.listarProfessores();
+                    gestaoDisciplina.listarDisciplinas();
+                    gestaoProfessor.listarProfessores();
 
                     System.out.println("Digite o ID da disciplina:");
                     int id = input.nextInt();
@@ -154,20 +174,20 @@ public class Main {
 //                            .findFirst()
 //                            .orElse(null);
 
-                    var disciplina_ = gestaoEscolar.pegarDisciplinaPorId(id);
+                    var disciplina_ = gestaoDisciplina.pegarDisciplinaPorId(id);
 
-                    var professor_ = gestaoEscolar.pegarProfessorPorMatricula(matricula);
+                    var professor_ = gestaoProfessor.pegarProfessorPorMatricula(matricula);
 
-                    gestaoEscolar.atribuirDisciplina(professor_,disciplina_);
+                    gestaoProfessor.atribuirDisciplina(professor_,disciplina_);
                     break;
                 case 10:
-                    gestaoEscolar.listarAlunos();
+                    gestaoAluno.listarAlunos();
                     break;
                 case 11:
-                    gestaoEscolar.listarProfessores();
+                    gestaoProfessor.listarProfessores();
                     break;
                 case 12:
-                    gestaoEscolar.listarDisciplinas();
+                    gestaoDisciplina.listarDisciplinas();
                     break;
             }
         } while(opcao != 0);

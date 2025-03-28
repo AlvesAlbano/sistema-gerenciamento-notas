@@ -1,3 +1,5 @@
+package org.sistema_gerenciamento_notas.model;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +21,7 @@ public class Professor extends Pessoa {
 
     @Override
     public String toString() {
-        return "Professor{" +
+        return "org.sistema_gerenciamento_notas.model.Professor{" +
                 "disciplinasMinistradas=" + disciplinasMinistradas +
                 ", matricula=" + matricula +
                 ", nome='" + nome + '\'' +

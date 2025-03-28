@@ -1,3 +1,8 @@
+package org.sistema_gerenciamento_notas.service;
+
+import org.sistema_gerenciamento_notas.model.Disciplina;
+import org.sistema_gerenciamento_notas.repository.DisciplinaRepository;
+
 import java.util.ArrayList;
 import java.util.List;
 

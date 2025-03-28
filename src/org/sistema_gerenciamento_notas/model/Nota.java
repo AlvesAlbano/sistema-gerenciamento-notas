@@ -1,3 +1,5 @@
+package org.sistema_gerenciamento_notas.model;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -5,7 +7,7 @@ import java.util.Map;
 public class Nota {
     private final int matriculaAluno;
 
-//    private Map<Disciplina,Float> notasMap = new HashMap<>();
+//    private Map<org.sistema_gerenciamento_notas.model.Disciplina,Float> notasMap = new HashMap<>();
     private Map<Disciplina, List<Float>> notasMap = new HashMap<>();
 
     public Nota(int matriculaAluno) {
@@ -16,11 +18,11 @@ public class Nota {
         return matriculaAluno;
     }
 
-//    public Map<Disciplina, Float> getNotasMap() {
+//    public Map<org.sistema_gerenciamento_notas.model.Disciplina, Float> getNotasMap() {
 //        return notasMap;
 //    }
 //
-//    public void setNotasMap(Map<Disciplina, Float> notasMap) {
+//    public void setNotasMap(Map<org.sistema_gerenciamento_notas.model.Disciplina, Float> notasMap) {
 //        this.notasMap = notasMap;
 //    }
 
@@ -47,7 +49,7 @@ public class Nota {
 
     @Override
     public String toString() {
-        return "Nota{" +
+        return "org.sistema_gerenciamento_notas.model.Nota{" +
                 "notasMap=" + notasMap +
                 '}';
     }

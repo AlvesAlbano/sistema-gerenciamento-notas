@@ -1,3 +1,5 @@
+package org.sistema_gerenciamento_notas.model;
+
 public abstract class Pessoa {
     protected final int matricula;
     protected String nome;

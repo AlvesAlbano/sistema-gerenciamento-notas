@@ -1,7 +1,13 @@
+package org.sistema_gerenciamento_notas.service;
+
+import org.sistema_gerenciamento_notas.model.Disciplina;
+import org.sistema_gerenciamento_notas.model.Professor;
+import org.sistema_gerenciamento_notas.repository.ProfessorRepository;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProfessorService implements ProfessorRepository{
+public class ProfessorService implements ProfessorRepository {
     private List<Professor> listaProfessores = new ArrayList<>();
 
     public List<Professor> getListaProfessores() {
