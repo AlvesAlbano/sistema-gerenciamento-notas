@@ -141,6 +141,9 @@ public class Main {
                     final int idDisciplina_ = input.nextInt();
 
                     gestaoDisciplina.removerDisciplina(idDisciplina_);
+
+                    System.out.println("Lista com ID removido");
+                    gestaoDisciplina.listarDisciplinas();
                     break;
                 case 8:
                     gestaoAluno.gerarHistorico();
