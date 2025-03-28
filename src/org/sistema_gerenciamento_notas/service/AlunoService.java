@@ -40,51 +40,32 @@ public class AlunoService implements AlunoRepository {
 
     @Override
     public void gerarHistorico() {
-        Scanner input = new Scanner(System.in);
+        final Scanner input = new Scanner(System.in);
+
         listarAlunos();
-        
-        System.out.print("\nDigite a matrícula do aluno para gerar histórico: ");
-        int matricula = input.nextInt();
-        
-        Aluno aluno = pegarAlunoPorMatricula(matricula);
-        if (aluno == null) {
-            System.out.println("Aluno não encontrado!");
-            return;
-        }
-        
-        System.out.println("\n=== HISTÓRICO ESCOLAR ===");
-        System.out.println("Aluno: " + aluno.getNome());
-        System.out.println("Matrícula: " + aluno.getMatricula());
-        System.out.println("----------------------------------");
-        
-        if (aluno.getListaNotas().isEmpty()) {
-            System.out.println("Nenhuma nota registrada para este aluno.");
-            return;
-        }
-        
-        // Itera por todas as notas do aluno
-        for (Nota nota : aluno.getListaNotas()) {
-            for (Map.Entry<Disciplina, List<Float>> entry : nota.getNotasMap().entrySet()) {
-                Disciplina disciplina = entry.getKey();
-                List<Float> notas = entry.getValue();
-                
-                // Calcula média
-                float soma = 0;
-                for (Float n : notas) {
-                    soma += n;
-                }
-                float media = soma / notas.size();
-                
-                // Formata a saída
-                System.out.println("Disciplina: " + disciplina.getNomeDisciplina());
-                System.out.println("Notas: " + notas);
-                System.out.printf("Média: %.1f - Situação: %s%n", 
-                    media, 
-                    media >= 5 ? "Aprovado" : "Reprovado");
-                System.out.println("----------------------------------");
+
+        System.out.print("Digite a matrícula do aluno para gerar histórico: ");
+        final int matricula = input.nextInt();
+
+        final var aluno = pegarAlunoPorMatricula(matricula);
+
+        System.out.printf("%s Historico org.sistema_gerenciamento_notas.model.Aluno: %s %s\n","\u001B[34m",aluno.getNome(),"\u001B[0m");
+
+
+        for(Nota notas: aluno.getListaNotas()){
+
+//            Map<org.sistema_gerenciamento_notas.model.Disciplina, Float> mapNotas = notas.getNotasMap();
+            Map<Disciplina, List<Float>> mapNotas = notas.getNotasMap();
+
+            for(Map.Entry<Disciplina, List<Float>> entry : mapNotas.entrySet()){
+                final var nota = entry.getValue();
+                final var disciplina = entry.getKey();
+
+                System.out.printf("org.sistema_gerenciamento_notas.model.Disciplina: %s | Notas: %s | Situação: %s |\n",disciplina.getNomeDisciplina(),nota,notas.getSituacao(disciplina));
             }
         }
     }
+
     @Override
     public Aluno pegarAlunoPorMatricula(int matriculaAluno) {
         for(Aluno aluno: listaAlunos){
