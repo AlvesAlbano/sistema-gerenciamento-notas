@@ -45,23 +45,30 @@ public class ProfessorService implements ProfessorRepository, ProfessorObserver 
         }
     }
 
+    // Implementando o método atribuirDisciplina
     @Override
     public void atribuirDisciplina(Professor professor, Disciplina disciplina) {
-        professor.getDisciplinasMinistradas().add(disciplina);
+        if (professor != null && disciplina != null) {
+            // Adiciona a disciplina à lista de disciplinas ministradas pelo professor
+            professor.getDisciplinasMinistradas().add(disciplina);
+            System.out.printf("Disciplina %s atribuída ao professor %s\n", disciplina.getNomeDisciplina(), professor.getNome());
+        } else {
+            System.out.println("Professor ou Disciplina inválidos para atribuição.");
+        }
     }
 
     @Override
     public void listarProfessores() {
-        System.out.printf("%sLista Professores%s\n","\u001B[34m","\u001B[0m");
+        System.out.printf("%sLista de Professores%s\n","\u001B[34m","\u001B[0m");
         for (Professor professorIndice: listaProfessores) {
-            System.out.printf("Matricula: %s | Nome: %s | Disciplinas Ministradas: %s\n",professorIndice.getMatricula(),professorIndice.getNome(),professorIndice.getDisciplinasMinistradas());
+            System.out.printf("Matrícula: %s | Nome: %s | Disciplinas Ministradas: %s\n", professorIndice.getMatricula(), professorIndice.getNome(), professorIndice.getDisciplinasMinistradas());
         }
     }
 
     @Override
     public Professor pegarProfessorPorMatricula(int matriculaProfessor) {
-        for(Professor professor: listaProfessores){
-            if (professor.getMatricula() == matriculaProfessor){
+        for (Professor professor: listaProfessores) {
+            if (professor.getMatricula() == matriculaProfessor) {
                 return professor;
             }
         }
@@ -70,11 +77,11 @@ public class ProfessorService implements ProfessorRepository, ProfessorObserver 
 
     @Override
     public void onProfessorContratado(Professor professor) {
-        System.out.printf("Professor contratado: %s\n",professor.getNome());
+        System.out.printf("Professor contratado: %s\n", professor.getNome());
     }
 
     @Override
     public void onProfessorDemitido(Professor professor) {
-        System.out.printf("Professor demitido: %s\n",professor.getNome());
+        System.out.printf("Professor demitido: %s\n", professor.getNome());
     }
 }

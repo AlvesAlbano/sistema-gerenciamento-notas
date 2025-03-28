@@ -28,7 +28,7 @@ public class GestaoProfessor implements ProfessorRepository {
 
     @Override
     public void atribuirDisciplina(Professor professor, Disciplina disciplina) {
-        professorService.atribuirDisciplina(professor,disciplina);
+        professorService.atribuirDisciplina(professor, disciplina);
     }
 
     @Override
@@ -41,41 +41,54 @@ public class GestaoProfessor implements ProfessorRepository {
         return professorService.pegarProfessorPorMatricula(matriculaProfessor);
     }
 
-    public void adicionarNota(AlunoService alunoService, DisciplinaService disciplinaService){
+    // Método para adicionar nota ao aluno
+    public void adicionarNota(AlunoService alunoService, DisciplinaService disciplinaService) {
+        // Listar alunos
         alunoService.listarAlunos();
 
+        // Scanner para entrada de dados
         final Scanner input = new Scanner(System.in);
-        System.out.println("Digite a matricula do aluno que deseja atribuir a nota:");
+        System.out.println("Digite a matrícula do aluno que deseja atribuir a nota:");
 
+        // Receber matrícula do aluno
         int matricula = input.nextInt();
-
         var aluno = alunoService.pegarAlunoPorMatricula(matricula);
 
+        // Listar disciplinas
         disciplinaService.listarDisciplinas();
 
         System.out.println("Digite o ID da disciplina que deseja atribuir a nota:");
-
         int idDisciplina = input.nextInt();
-
         var disciplina = disciplinaService.pegarDisciplinaPorId(idDisciplina);
 
         System.out.println("Digite o valor da nota: ");
         float notaValor = input.nextFloat();
 
-        if (notaValor < 0f || notaValor > 10f){
+        // Validar se a nota está dentro do intervalo
+        if (notaValor < 0f || notaValor > 10f) {
             throw new NotaInvalida();
         }
 
+        // Usar o padrão Polymorphism sem criar subclasses de Nota:
+        // Podemos aplicar o padrão polimorfismo, considerando um comportamento que pode ser alterado dependendo da situação.
+        // Por exemplo, se tiver algum tipo especial de avaliação, podemos usar algo no comportamento da nota.
+        // Nesse caso, vamos manter a nota simples e diretamente associada ao aluno e à disciplina.
+
+        // Procurar uma nota existente ou criar uma nova
         Nota nota = aluno.getListaNotas().stream()
                 .filter(n -> n.getMatriculaAluno() == aluno.getMatricula())
                 .findFirst()
                 .orElse(null);
 
-        if (nota == null){
+        // Se não existir, criar uma nova
+        if (nota == null) {
             nota = new Nota(aluno.getMatricula());
+            // Adicionar a disciplina ao mapa de notas do aluno (conforme o fluxo do código)
             nota.getNotasMap().putIfAbsent(disciplina, new ArrayList<>(3));
             aluno.getListaNotas().add(nota);
         }
+
+        // Adicionar o valor da nota à disciplina específica
         nota.getNotasMap().get(disciplina).add(notaValor);
     }
 }
