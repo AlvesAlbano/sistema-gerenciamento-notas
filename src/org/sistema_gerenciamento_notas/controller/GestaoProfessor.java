@@ -12,31 +12,26 @@ import org.sistema_gerenciamento_notas.service.ProfessorService;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class GestaoProfessor implements ProfessorRepository {
+public class GestaoProfessor {
 
     private final ProfessorService professorService = ProfessorService.getProfessorService();
 
-    @Override
     public void contratarProfessor(Professor professor) {
         professorService.contratarProfessor(professor);
     }
 
-    @Override
     public void demitirProfessor(int matriculaProfessor) {
         professorService.demitirProfessor(matriculaProfessor);
     }
 
-    @Override
     public void atribuirDisciplina(Professor professor, Disciplina disciplina) {
         professorService.atribuirDisciplina(professor, disciplina);
     }
 
-    @Override
     public void listarProfessores() {
         professorService.listarProfessores();
     }
 
-    @Override
     public Professor pegarProfessorPorMatricula(int matriculaProfessor) {
         return professorService.pegarProfessorPorMatricula(matriculaProfessor);
     }
