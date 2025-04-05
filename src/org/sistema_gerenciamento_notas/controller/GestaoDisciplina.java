@@ -7,7 +7,6 @@ public class GestaoDisciplina {
 
     private final DisciplinaService disciplinaService = new DisciplinaService();
 
-
     public DisciplinaService getDisciplinaService() {
         return disciplinaService;
     }

@@ -3,20 +3,28 @@ package org.sistema_gerenciamento_notas.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Professor extends Pessoa {
+public class Professor {
 
     private List<Disciplina> disciplinasMinistradas = new ArrayList<>();
+    private int matricula;
+    private String nome;
 
     public Professor(int matricula, String nome) {
-        super(matricula, nome);
+        this.matricula = matricula;
+        this.nome = nome;
+    }
+
+    public int getMatricula() {
+        return matricula;
+    }
+
+
+    public String getNome() {
+        return nome;
     }
 
     public List<Disciplina> getDisciplinasMinistradas() {
         return disciplinasMinistradas;
-    }
-
-    public void setDisciplinasMinistradas(List<Disciplina> disciplinasMinistradas) {
-        this.disciplinasMinistradas = disciplinasMinistradas;
     }
 
     @Override

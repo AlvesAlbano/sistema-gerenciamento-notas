@@ -4,7 +4,6 @@ import org.sistema_gerenciamento_notas.NotaInvalida;
 import org.sistema_gerenciamento_notas.model.Disciplina;
 import org.sistema_gerenciamento_notas.model.Nota;
 import org.sistema_gerenciamento_notas.model.Professor;
-import org.sistema_gerenciamento_notas.repository.ProfessorRepository;
 import org.sistema_gerenciamento_notas.service.AlunoService;
 import org.sistema_gerenciamento_notas.service.DisciplinaService;
 import org.sistema_gerenciamento_notas.service.ProfessorService;
@@ -14,7 +13,7 @@ import java.util.Scanner;
 
 public class GestaoProfessor {
 
-    private final ProfessorService professorService = ProfessorService.getProfessorService();
+    private final ProfessorService professorService = new ProfessorService();
 
     public void contratarProfessor(Professor professor) {
         professorService.contratarProfessor(professor);

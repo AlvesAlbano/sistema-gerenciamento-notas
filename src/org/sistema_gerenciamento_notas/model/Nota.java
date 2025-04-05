@@ -7,7 +7,6 @@ import java.util.Map;
 public class Nota {
     private final int matriculaAluno;
 
-//    private Map<org.sistema_gerenciamento_notas.model.Disciplina,Float> notasMap = new HashMap<>();
     private Map<Disciplina, List<Float>> notasMap = new HashMap<>();
 
     public Nota(int matriculaAluno) {
@@ -18,21 +17,8 @@ public class Nota {
         return matriculaAluno;
     }
 
-//    public Map<org.sistema_gerenciamento_notas.model.Disciplina, Float> getNotasMap() {
-//        return notasMap;
-//    }
-//
-//    public void setNotasMap(Map<org.sistema_gerenciamento_notas.model.Disciplina, Float> notasMap) {
-//        this.notasMap = notasMap;
-//    }
-
-
     public Map<Disciplina, List<Float>> getNotasMap() {
         return notasMap;
-    }
-
-    public void setNotasMap(Map<Disciplina, List<Float>> notasMap) {
-        this.notasMap = notasMap;
     }
 
     public String getSituacao(Disciplina disciplina){
