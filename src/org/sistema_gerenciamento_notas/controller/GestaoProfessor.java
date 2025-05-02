@@ -1,6 +1,7 @@
 package org.sistema_gerenciamento_notas.controller;
 
 import org.sistema_gerenciamento_notas.NotaInvalida;
+import org.sistema_gerenciamento_notas.command.AtribuirDisciplinaCommand;
 import org.sistema_gerenciamento_notas.model.Disciplina;
 import org.sistema_gerenciamento_notas.model.Nota;
 import org.sistema_gerenciamento_notas.model.Professor;
@@ -24,7 +25,11 @@ public class GestaoProfessor {
     }
 
     public void atribuirDisciplina(Professor professor, Disciplina disciplina) {
-        professorService.atribuirDisciplina(professor, disciplina);
+
+        AtribuirDisciplinaCommand atribuirDisciplinaCommand = new AtribuirDisciplinaCommand(professorService,professor,disciplina);
+        atribuirDisciplinaCommand.executar();
+
+        //        professorService.atribuirDisciplina(professor, disciplina);
     }
 
     public void listarProfessores() {

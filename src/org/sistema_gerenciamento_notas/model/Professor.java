@@ -5,9 +5,9 @@ import java.util.List;
 
 public class Professor {
 
-    private List<Disciplina> disciplinasMinistradas = new ArrayList<>();
-    private int matricula;
-    private String nome;
+    private final List<Disciplina> disciplinasMinistradas = new ArrayList<>();
+    private final int matricula;
+    private final String nome;
 
     public Professor(int matricula, String nome) {
         this.matricula = matricula;
@@ -17,7 +17,6 @@ public class Professor {
     public int getMatricula() {
         return matricula;
     }
-
 
     public String getNome() {
         return nome;
