@@ -14,7 +14,7 @@ import java.util.Scanner;
 
 public class GestaoProfessor {
 
-    private final ProfessorService professorService = new ProfessorService();
+    private final ProfessorService professorService = ProfessorService.getInstancia();
 
     public void contratarProfessor(Professor professor) {
         professorService.contratarProfessor(professor);
@@ -28,8 +28,6 @@ public class GestaoProfessor {
 
         AtribuirDisciplinaCommand atribuirDisciplinaCommand = new AtribuirDisciplinaCommand(professorService,professor,disciplina);
         atribuirDisciplinaCommand.executar();
-
-        //        professorService.atribuirDisciplina(professor, disciplina);
     }
 
     public void listarProfessores() {
