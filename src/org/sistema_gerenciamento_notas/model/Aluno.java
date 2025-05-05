@@ -28,7 +28,7 @@ public class Aluno {
     @Override
     public String toString() {
 
-        return "org.sistema_gerenciamento_notas.model.Aluno{" +
+        return "Aluno{" +
                 "listaNotas=" + listaNotas +
                 ", matricula=" + matricula +
                 ", nome='" + nome + '\'' +

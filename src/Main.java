@@ -1,6 +1,7 @@
 import org.sistema_gerenciamento_notas.controller.GestaoAluno;
 import org.sistema_gerenciamento_notas.controller.GestaoDisciplina;
 import org.sistema_gerenciamento_notas.controller.GestaoProfessor;
+import org.sistema_gerenciamento_notas.controller.GestaoTurma;
 import org.sistema_gerenciamento_notas.model.Aluno;
 import org.sistema_gerenciamento_notas.model.Disciplina;
 import org.sistema_gerenciamento_notas.model.Professor;
@@ -14,6 +15,7 @@ public class Main {
         final GestaoAluno gestaoAluno = new GestaoAluno();
         final GestaoDisciplina gestaoDisciplina = new GestaoDisciplina();
         final GestaoProfessor gestaoProfessor = new GestaoProfessor();
+        final GestaoTurma gestaoTurma = new GestaoTurma();
 
         int opcao;
         int autoIncrementAluno = 0;
@@ -61,6 +63,10 @@ public class Main {
             System.out.println("Digite 10 para listar alunos");
             System.out.println("Digite 11 para listar professores");
             System.out.println("Digite 12 para listar disciplinas");
+            System.out.println("Digite 13 para criar turma");
+            System.out.println("Digite 14 para listar turmas");
+            System.out.println("Digite 15 para adicionar aluno na turma");
+            System.out.println("Digite 16 para dissolver turma");
             System.out.println("Digite 0 para sair");
 
             opcao = input.nextInt();
@@ -194,6 +200,23 @@ public class Main {
                     break;
                 case 12:
                     gestaoDisciplina.listarDisciplinas();
+                    break;
+                case 13:
+                    gestaoTurma.criarTurma();
+                    break;
+                case 14:
+                    gestaoTurma.listarTurmas();
+                    break;
+                case 15:
+                    final int matriculaAluno__ = autoIncrementAluno+=1;
+                    System.out.println("Digite o nome do aluno(a):");
+                    input.nextLine();
+                    final String nomeAluno_ = input.nextLine();
+
+                    gestaoTurma.adicionarAluno(new Aluno(matriculaAluno__,nomeAluno_));
+                    break;
+                case 16:
+                    gestaoTurma.dissolverTurma();
                     break;
             }
         } while(opcao != 0);
