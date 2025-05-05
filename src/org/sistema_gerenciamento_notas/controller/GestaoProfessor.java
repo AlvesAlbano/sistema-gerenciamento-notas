@@ -28,8 +28,6 @@ public class GestaoProfessor {
 
         AtribuirDisciplinaCommand atribuirDisciplinaCommand = new AtribuirDisciplinaCommand(professorService,professor,disciplina);
         atribuirDisciplinaCommand.executar();
-
-//        professorService.atribuirDisciplina(professor, disciplina);
     }
 
     public void listarProfessores() {
