@@ -59,7 +59,6 @@ public class TurmaService implements TurmaRepository {
 //
 //        System.out.println("Digite a letra da turma: ");
 //        final char id = input.next().toUpperCase().charAt(0);
-//
     }
 
     @Override
